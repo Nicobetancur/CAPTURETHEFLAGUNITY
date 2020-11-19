@@ -9,6 +9,7 @@ public class GameState : MonoBehaviour
 
     public static GameState instance;
 
+
     void Awake()
     {
         instance = this;

@@ -28,6 +28,8 @@ public class RunAwayController : MonoBehaviour
     void LateUpdate()
     {
         transform.position = target.position - offset;
+
+
         transform.LookAt(target.position + Vector3.up * pitch);
         transform.RotateAround(target.position, Vector3.up, currentYaw);
     }

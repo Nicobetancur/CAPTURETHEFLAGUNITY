@@ -15,14 +15,17 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact()
     {
-        //This method is meant to be overwritten
-        UnityEngine.Debug.Log("Interacting with " + transform.name);
-        UnityEngine.Debug.Log(SPAWN.position);
-        transform.position = SPAWN.position;
+        if (hasInteracted == false)
+        {
+            //This method is meant to be overwritten
+            UnityEngine.Debug.Log("Interacting with " + transform.name);
+            //UnityEngine.Debug.Log(SPAWN.position);
+            transform.position = SPAWN.position;
 
 
 
-        hasInteracted = true;
+            hasInteracted = true;
+        }
     }
 
     void Update()
@@ -49,9 +52,10 @@ public class Interactable : MonoBehaviour
     {
         isFocus = false;
         player = null;
+        hasInteracted = true;
 
     }
-    
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
