@@ -18,7 +18,13 @@ public class Interactable : MonoBehaviour
         if (hasInteracted == false)
         {
             //This method is meant to be overwritten
-            UnityEngine.Debug.Log("Interacting with " + transform.name);
+
+            if (transform.name == "Cube")
+            {
+                UnityEngine.Debug.Log("Interacting with " + transform.name);
+            }
+
+ 
             //UnityEngine.Debug.Log(SPAWN.position);
             transform.position = SPAWN.position;
 
@@ -58,7 +64,15 @@ public class Interactable : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        if ((transform.name == "redFloor") || (transform.name == "Floor"))
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(transform.position, new Vector3(100,3, 61));
+        }
+        else {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, radius);
+        }
+        
     }
 }

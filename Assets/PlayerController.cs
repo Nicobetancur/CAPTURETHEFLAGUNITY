@@ -40,47 +40,65 @@ public class PlayerController : MonoBehaviour
     {
         
         if (transform.name == ("Red Player") || transform.name == ("Red Player 2"))
-        { 
+        {
             Interactable interactable = enemytarg.GetComponent<Interactable>();
-            SetFocus(interactable);
+
+            if (interactable != null)
+            {
+                UnityEngine.Debug.Log("hello");
+                SetFocus(interactable);
+            }
         }
+   
+
+
         if (transform.name == "Blue Player")
         {
+            //distance from player to enemy1, enemy2
             float rundist = Vector3.Distance(runaway.position, transform.position);
             float rundist2 = Vector3.Distance(runaway2.position, transform.position);
 
+            //distance from player to cube
             float endist = Vector3.Distance(enemytarg.position, transform.position);
-            //UnityEngine.Debug.Log(endist);
+
+            //Unit vector to cube
             Vector3 endir = Vector3.Normalize(transform.position - enemytarg.position);
 
+
+            //adjust length of endir vector
             if (endist < 3)
             {
                 Interactable interactable = enemytarg.GetComponent<Interactable>();
 
                 SetFocus(interactable);
             }
+
+            //multiplier
             if (endist < 20)
             {
-                UnityEngine.Debug.Log("30");
+                //UnityEngine.Debug.Log("20");
                 endir *= 9;
                
             }
 
             else if (endist < 30)
             {
-                UnityEngine.Debug.Log("40");
+                //UnityEngine.Debug.Log("30");
                 endir *= 6;
             }
 
             else if (endist < 40)
             {
-                UnityEngine.Debug.Log("60");
+                //UnityEngine.Debug.Log("40");
                 endir *= 3;
             }
 
 
+            //Runaway vectors
             Vector3 rundir = Vector3.Normalize(transform.position - runaway.position) * (10/rundist);
             Vector3 rundir2 = Vector3.Normalize(transform.position - runaway2.position) * (10 / rundist2);
+
+
             Vector3 findir = (rundir + rundir2 - endir) * 4;
             //UnityEngine.Debug.Log(findir);
             motor.MoveToPoint(transform.position + findir);
@@ -108,6 +126,26 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /*
+    void OnCollisionEnter(Collision colliderInfo)
+    {
+        if (transform.name == "Blue Player")
+        {
+            if (colliderInfo.collider.name == "redFloor")
+            {
+                Globals.isCollRed = true;
+                Globals.isCollBlue = false;
+            }
+
+            else if (colliderInfo.collider.name == "Floor")
+            {
+                Globals.isCollRed = false;
+                Globals.isCollBlue = true;
+            }
+        }
+    }
+    */
+
     void RemoveFocus()
     {
         if (focus != null)
@@ -118,6 +156,60 @@ public class PlayerController : MonoBehaviour
         motor.StopFollowingTarget();
     }
 
+
+    /*
+    Vector3 attack()
+    {
+        //distance from player to enemy1, enemy2
+        float rundist = Vector3.Distance(runaway.position, transform.position);
+        float rundist2 = Vector3.Distance(runaway2.position, transform.position);
+
+        //distance from player to cube
+        float endist = Vector3.Distance(enemytarg.position, transform.position);
+
+        //Unit vector to cube
+        Vector3 endir = Vector3.Normalize(transform.position - enemytarg.position);
+
+
+        //adjust length of endir vector
+        if (endist < 3)
+        {
+            Interactable interactable = enemytarg.GetComponent<Interactable>();
+
+            SetFocus(interactable);
+        }
+
+        //multiplier
+        if (endist < 20)
+        {
+            //UnityEngine.Debug.Log("20");
+            endir *= 9;
+
+        }
+
+        else if (endist < 30)
+        {
+            //UnityEngine.Debug.Log("30");
+            endir *= 6;
+        }
+
+        else if (endist < 40)
+        {
+            //UnityEngine.Debug.Log("40");
+            endir *= 3;
+        }
+
+
+        //Runaway vectors
+        Vector3 rundir = Vector3.Normalize(transform.position - runaway.position) * (10 / rundist);
+        Vector3 rundir2 = Vector3.Normalize(transform.position - runaway2.position) * (10 / rundist2);
+
+
+        Vector3 findir = (rundir + rundir2 - endir) * 4;
+
+        return(findir)
+    }
+    */
 
 
 
