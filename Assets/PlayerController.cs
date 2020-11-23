@@ -9,7 +9,7 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
     public Transform enemytarg;
     UnityEngine.AI.NavMeshAgent agent;
     public Transform runaway;
@@ -20,12 +20,12 @@ public class PlayerController : MonoBehaviour
     RunAwayController runawayObj;
     Interactable focus;
     public Transform SPAWN;
-
+    public float speed = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         transform.position = SPAWN.position;
         //UnityEngine.Debug.Log("Started PController");
         //print(enemytarg);
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (transform.name == ("Red Player") || transform.name == ("Red Player 2"))
         {
             Interactable interactable = enemytarg.GetComponent<Interactable>();
@@ -49,11 +49,30 @@ public class PlayerController : MonoBehaviour
                 SetFocus(interactable);
             }
         }
-   
+
 
 
         if (transform.name == "Blue Player")
         {
+
+           Vector3 pos = transform.position;
+
+           if (Input.GetKey ("w")) {
+               pos.z += speed * Time.deltaTime;
+           }
+           if (Input.GetKey ("s")) {
+               pos.z -= speed * Time.deltaTime;
+           }
+           if (Input.GetKey ("d")) {
+               pos.x += speed * Time.deltaTime;
+           }
+           if (Input.GetKey ("a")) {
+               pos.x -= speed * Time.deltaTime;
+           }
+
+
+           transform.position = pos;
+            /*
             //distance from player to enemy1, enemy2
             float rundist = Vector3.Distance(runaway.position, transform.position);
             float rundist2 = Vector3.Distance(runaway2.position, transform.position);
@@ -78,7 +97,7 @@ public class PlayerController : MonoBehaviour
             {
                 //UnityEngine.Debug.Log("20");
                 endir *= 9;
-               
+
             }
 
             else if (endist < 30)
@@ -104,6 +123,7 @@ public class PlayerController : MonoBehaviour
             motor.MoveToPoint(transform.position + findir);
 
             //UnityEngine.Debug.Log(endir);
+            */
         }
 
 
@@ -122,7 +142,7 @@ public class PlayerController : MonoBehaviour
             motor.FollowTarget(newFocus);
         }
         newFocus.OnFocused(transform);
-        
+
 
     }
 

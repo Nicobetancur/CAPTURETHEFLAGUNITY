@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 742174791}
   - component: {fileID: 742174794}
   - component: {fileID: 742174795}
+  - component: {fileID: 742174796}
   m_Layer: 0
   m_Name: Blue Player
   m_TagString: Untagged
@@ -460,6 +461,7 @@ MonoBehaviour:
   runaway: {fileID: 1686723870}
   runaway2: {fileID: 1424509506}
   SPAWN: {fileID: 1718127232}
+  speed: 20
 --- !u!4 &742174792
 Transform:
   m_ObjectHideFlags: 0
@@ -522,6 +524,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 020c0c97e66bfec4cbb9ada9240d521c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &742174796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742174787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbcd055713e6249eca31ac819c3a22dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &891634339
@@ -1027,6 +1041,7 @@ MonoBehaviour:
   runaway: {fileID: 0}
   runaway2: {fileID: 0}
   SPAWN: {fileID: 84769728}
+  speed: 20
 --- !u!195 &1424509502
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1047,7 +1062,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 8
+  m_WalkableMask: 24
   m_ObstacleAvoidanceType: 4
 --- !u!54 &1424509503
 Rigidbody:
@@ -1301,6 +1316,7 @@ MonoBehaviour:
   runaway: {fileID: 0}
   runaway2: {fileID: 0}
   SPAWN: {fileID: 1729399694}
+  speed: 20
 --- !u!195 &1686723872
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1321,7 +1337,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 8
+  m_WalkableMask: 24
   m_ObstacleAvoidanceType: 4
 --- !u!54 &1686723873
 Rigidbody:
